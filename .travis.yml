@@ -1,0 +1,18 @@
+language: node_js
+cache:
+  yarn: true
+  directories:
+    - node_modules
+git:
+  depth: 3
+jobs:
+  include:
+    - stage: test
+      node_js: '10'
+      install:
+        - yarn install --ignore-engines
+      script:
+        - yarn coveralls
+      branches:
+        except:
+          - /^v\d+\.\d+\.\d+$/
